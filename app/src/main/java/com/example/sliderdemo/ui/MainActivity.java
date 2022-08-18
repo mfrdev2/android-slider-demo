@@ -1,4 +1,4 @@
-package com.example.sliderdemo;
+package com.example.sliderdemo.ui;
 
 
 import android.annotation.SuppressLint;
@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+
+import com.example.sliderdemo.R;
 
 import jp.shts.android.storiesprogressview.StoriesProgressView;
 
@@ -141,4 +143,6 @@ public class MainActivity extends AppCompatActivity implements StoriesProgressVi
         activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         activity.getWindow().setStatusBarColor(ContextCompat.getColor(activity, color));
     }
+
+
 }
