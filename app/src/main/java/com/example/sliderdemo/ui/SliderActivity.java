@@ -28,6 +28,7 @@ public class SliderActivity extends AppCompatActivity {
     long pressTime = 0L;
     long limit = 500L;
     boolean onClick;
+    boolean isStopSlider;
     private int[] array_image_place = {
             R.drawable.sample1,
             R.drawable.sample2,
@@ -85,6 +86,10 @@ public class SliderActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int pos, float positionOffset, int positionOffsetPixels) {
+                if (isStopSlider) {
+                    isStopSlider = false;
+                    startAutoSlider(adapterImageSlider.getCount(), false);
+                }
             }
 
             @Override
@@ -96,6 +101,7 @@ public class SliderActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
             }
         });
 
@@ -104,24 +110,25 @@ public class SliderActivity extends AppCompatActivity {
         adapterImageSlider.setOnItemClickListener(new AdapterImageSlider.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Image obj) {
-                if(onClick){
+                if (onClick) {
                     onClick = false;
-                    Toast.makeText(SliderActivity.this,"Click"+obj.body,Toast.LENGTH_LONG).show();
+                    Toast.makeText(SliderActivity.this, "Click" + obj.body, Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        startAutoSlider(adapterImageSlider.getCount(),false);
+        startAutoSlider(adapterImageSlider.getCount(), false);
 
     }
 
-    private void startAutoSlider(final int count,boolean isUp) {
-        if(isUp){
-            handler.postDelayed(runnable, 100);
+    private void startAutoSlider(final int count, boolean isUp) {
+        if (isUp) {
+            handler.postDelayed(runnable, 1000);
         }
         runnable = new Runnable() {
             @Override
             public void run() {
+                isStopSlider = false;
                 int pos = viewPager.getCurrentItem();
                 pos = pos + 1;
                 if (pos >= count) pos = 0;
@@ -129,12 +136,13 @@ public class SliderActivity extends AppCompatActivity {
                 handler.postDelayed(runnable, 3000);
             }
         };
-        if(!isUp){
+        if (!isUp) {
             handler.postDelayed(runnable, 3000);
         }
     }
 
     private void stopAutoSlider() {
+        isStopSlider = true;
         handler.removeCallbacks(runnable);
     }
 
@@ -168,9 +176,9 @@ public class SliderActivity extends AppCompatActivity {
                 return false;
             case MotionEvent.ACTION_UP:
                 long now = System.currentTimeMillis();
-                startAutoSlider(adapterImageSlider.getCount(),true);
+                startAutoSlider(adapterImageSlider.getCount(), true);
                 boolean aBol = limit < now - pressTime;
-                if(!aBol){
+                if (!aBol) {
                     //click perform
                     onClick = true;
                 }
