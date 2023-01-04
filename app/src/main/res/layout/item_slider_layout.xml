@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fitsSystemWindows="false">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/lyt_parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <data>
 
-        <ImageView
-            android:id="@+id/image"
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="false">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lyt_parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#263238"
-            android:scaleType="centerCrop" />
+            android:layout_height="match_parent">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#263238"
+                android:scaleType="centerCrop" />
 
-</RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</layout>
